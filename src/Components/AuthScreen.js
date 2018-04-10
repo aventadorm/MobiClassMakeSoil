@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { TextInput, Text } from 'react-native';
 import firebase from 'firebase';
 import { Button, Card, CardSection, Input, Spinner } from './common';
 
-class LoginForm extends Component {
+export default class LoginScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Sign In',
+  };
   state = { email: '', password: '', error: '', loading: false };
 
   onButtonPress() {
@@ -31,6 +34,7 @@ class LoginForm extends Component {
       loading: false,
       error: ''
     });
+    this.props.navigation.navigate('App');
   }
 
   renderButton() {
@@ -49,11 +53,14 @@ class LoginForm extends Component {
     return (
       <Card>
         <CardSection>
-          <Input
+          <Text>Email: </Text>
+          <TextInput
             placeholder="user@gmail.com"
             label="Email"
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
+            style={{flex:1, flexDirection:'row'}}
+            keyboardType='email-address'
           />
         </CardSection>
 
@@ -86,5 +93,3 @@ const styles = {
     color: 'red'
   }
 };
-
-export default LoginForm;
