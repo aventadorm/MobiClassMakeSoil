@@ -8,14 +8,26 @@ import AppScreen from './Components/AppScreen';
 import { StackNavigator, SwitchNavigator } from 'react-navigation';
 
 const AppStack = StackNavigator({ Home: AppScreen });
-const AuthStack = StackNavigator({ Login: AuthScreen });
+const AuthStack = StackNavigator(
+  { Login: AuthScreen },
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#212529',
+      },
+      headerTintColor: '#28a745',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  }
+);
 
 export default SwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     App: AppStack,
     Auth: AuthStack,
-
   },
   {
     initialRouteName: 'AuthLoading',

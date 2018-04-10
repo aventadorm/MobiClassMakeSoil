@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { TextInput, Text } from 'react-native';
+import { TextInput, Text, View, TouchableOpacity } from 'react-native';
 import firebase from 'firebase';
-import { Button, Card, CardSection, Input, Spinner } from './common';
+import { LabelInput, Input, Spinner } from './common';
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -37,51 +37,44 @@ export default class LoginScreen extends React.Component {
     this.props.navigation.navigate('App');
   }
 
-  renderButton() {
-    if (this.state.loading) {
-      return <Spinner size="small" />;
-    }
-
-    return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Log in
-      </Button>
-    );
-  }
-
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Text>Email: </Text>
+      <View style={styles.loginContainerStyle}>
+        <View style={styles.loginBoxInputStyle}>
+          <Text style={styles.loginLabelStyle}>Email: </Text>
           <TextInput
             placeholder="user@gmail.com"
             label="Email"
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
-            style={{flex:1, flexDirection:'row'}}
             keyboardType='email-address'
+            autoCapitalize="none"
           />
-        </CardSection>
-
-        <CardSection>
-          <Input
+        </View>
+        <View style={styles.loginBoxInputStyle}>
+          <Text style={styles.loginLabelStyle}>Password: </Text>
+          <TextInput
             secureTextEntry
             placeholder="password"
             label="Password"
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
+            autoCapitalize="none"
           />
-        </CardSection>
-
-        <Text style={styles.errorTextStyle}>
-          {this.state.error}
-        </Text>
-
-        <CardSection>
-          {this.renderButton()}
-        </CardSection>
-      </Card>
+        </View>
+        <View>
+          <Text style={styles.errorTextStyle}>
+            {this.state.error}
+          </Text>
+        </View>
+        <View style={styles.loginButtonContainerStyle}>
+          <TouchableOpacity
+            onPress={this.onButtonPress.bind(this)}
+          >
+            <Text style={styles.loginButtonStyle}>LOGIN</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 }
@@ -91,5 +84,30 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
+
+  },
+  loginContainerStyle: {
+    flex:0.7,
+    flexDirection:'column',
+  },
+  loginButtonStyle: {
+    backgroundColor: "#7fe1af",
+    padding: 25,
+    fontSize: 25,
+  },
+  loginButtonContainerStyle: {
+    flex:0.8,
+    flexDirection: 'column',
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  loginBoxInputStyle: {
+    flex:1,
+  },
+  loginLabelStyle: {
+    fontSize: 25,
+    textAlign: "left",
   }
+
+
 };
