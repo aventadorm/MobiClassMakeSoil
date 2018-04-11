@@ -12,6 +12,7 @@ const AuthStack = StackNavigator(
   { Login: AuthScreen },
   {
     navigationOptions: {
+      title: 'MAKE:SOIL',
       headerStyle: {
         backgroundColor: '#212529',
       },
