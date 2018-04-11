@@ -61,6 +61,7 @@ class LoginScreen extends React.Component {
       >
         <Text style={styles.loginButtonStyle}>LOGIN</Text>
       </TouchableOpacity>
+      <View style={{height:60}}/>
     </KeyboardAvoidingView>
     );
   }
@@ -145,6 +146,7 @@ class SignupScreen extends React.Component {
         >
         <Text style={styles.loginButtonStyle}>Sign up</Text>
       </TouchableOpacity>
+      <View style={{height:80}}/>
       </KeyboardAvoidingView>
     );
   }
