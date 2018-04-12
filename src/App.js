@@ -2,35 +2,41 @@ import firebase from 'firebase';
 import React, { Component} from 'react';
 import { View, StyleSheet} from 'react-native';
 import { Card, CardSection, Header, Button, Spinner, Input } from './Components/common';
-import AuthLoadingScreen from './Components/AuthLoadingScreen';
-import AuthScreen from './Components/AuthScreen';
-import AppScreen from './Components/AppScreen';
+import AppNavigation from './Navigation/AppNavigation';
 import { StackNavigator, SwitchNavigator } from 'react-navigation';
 
-const AppStack = StackNavigator({ Home: AppScreen });
-const AuthStack = StackNavigator(
-  { Login: AuthScreen },
-  {
-    navigationOptions: {
-      title: 'MAKE:SOIL',
-      headerStyle: {
-        backgroundColor: '#212529',
-      },
-      headerTintColor: '#28a745',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    },
-  }
-);
+export default class App extends React.Component {
 
-export default SwitchNavigator(
-  {
-    AuthLoading: AuthLoadingScreen,
-    App: AppStack,
-    Auth: AuthStack,
-  },
-  {
-    initialRouteName: 'AuthLoading',
+  componentWillMount() {
+    if (!firebase.apps.length){
+      firebase.initializeApp({
+        apiKey: 'AIzaSyD17KqnJyxFcr3YVqSzeuz9B_wNi8yDcbI',
+        authDomain: 'makesoilvimd.firebaseapp.com',
+        databaseURL: 'https://makesoilvimd.firebaseio.com',
+        projectId: 'makesoilvimd',
+        storageBucket: 'makesoilvimd.appspot.com',
+        messagingSenderId: '484606101228'
+      });
+    }
+
   }
-);
+
+  componentWillUnmount() {
+    this.authSubscription();
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <AppNavigation/>
+      </View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
+})

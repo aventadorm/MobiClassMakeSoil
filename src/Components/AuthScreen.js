@@ -10,13 +10,13 @@ class LoginScreen extends React.Component {
 
   onButtonPress() {
     const { email, password } = this.state;
-
     this.setState({ error: '', loading: true });
-
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(this.onLoginSuccess.bind(this))
       .catch(this.onLoginFail.bind(this));
   }
+
+
 
   onLoginFail() {
     this.setState({ error: 'Authentication Failed', loading: false });

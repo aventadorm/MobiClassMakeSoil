@@ -5,8 +5,25 @@ import { Button, Card, CardSection, Input, Spinner } from './common';
 
 export default class AppScreen extends React.Component {
   static navigationOptions = {
-    title: 'MAKE:SOIL',
+    title: 'HOME',
   };
+
+  componentWillMount(){
+    this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
+      this.setState({
+        loading: false,
+        user,
+      });
+      if (!user) {
+        this.props.navigation.navigate('Auth')
+      }
+    });
+
+  }
+
+  componentWillUnmount(){
+    this.authSubscription();
+  }
 
   render() {
     return (
