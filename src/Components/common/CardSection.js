@@ -3,9 +3,9 @@ import { View } from 'react-native';
 
 const CardSection = (props) =>
   (
-    <View style={styles.containerStyle}>
+    <KeyboardAvoidingView  style={styles.containerStyle}>
       {props.children}
-    </View>
+    </KeyboardAvoidingView >
   );
 
 const styles = {

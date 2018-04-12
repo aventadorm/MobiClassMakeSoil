@@ -1,11 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 
 const Card = (props) =>
   (
-    <View style={styles.containerStyle}>
+    <KeyboardAvoidingView style={styles.containerStyle} behavior="padding">
       {props.children}
-    </View>
+    </KeyboardAvoidingView >
   );
 
 
@@ -22,7 +22,11 @@ const styles = {
     elevation: 1,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 10
+    marginTop: 10,
+    backgroundColor: '#5cad14',
+    flexDirection:'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 };
 

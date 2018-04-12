@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput, Text,Image,  View, TouchableOpacity, KeyboardAvoidingView, Dimensions  } from 'react-native';
 import firebase from 'firebase';
-import { LabelInput, Input, Spinner } from './common';
+import { LabelInput, Input, Spinner, Card, Button} from './common';
 import { TabNavigator, TabBarBottom} from 'react-navigation';
 import logo from '../Icons/compost.png';
 
@@ -34,35 +34,32 @@ class LoginScreen extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.loginContainerStyle} behavior="padding">
-        <Image source={logo} style={styles.logo} />
-        <TextInput
-          placeholder="email"
-          value={this.state.email}
-          onChangeText={email => this.setState({ email })}
-          keyboardType='email-address'
-          autoCapitalize="none"
-          style={styles.loginBoxInputStyle}
-        />
-        <TextInput
-          secureTextEntry
-          placeholder="password"
-          value={this.state.password}
-          onChangeText={password => this.setState({ password })}
-          autoCapitalize="none"
-          style={styles.loginBoxInputStyle}
-        />
+    <Card style={styles.loginContainerStyle} behavior="padding">
+      <Image source={logo} style={styles.logo} />
+      <TextInput
+        placeholder="email"
+        label='Email: '
+        value={this.state.email}
+        onChangeText={email => this.setState({ email })}
+        keyboardType='email-address'
+        autoCapitalize="none"
+        style={styles.loginBoxInputStyle}
+      />
+      <TextInput
+        secureTextEntry
+        placeholder="password"
+        value={this.state.password}
+        onChangeText={password => this.setState({ password })}
+        autoCapitalize="none"
+        style={styles.loginBoxInputStyle}
+      />
 
-      <Text style={styles.errorTextStyle}>
-        {this.state.error}
-      </Text>
-      <TouchableOpacity
-        onPress={this.onButtonPress.bind(this)}
-      >
-        <Text style={styles.loginButtonStyle}>LOGIN</Text>
-      </TouchableOpacity>
-      <View style={{height:60}}/>
-    </KeyboardAvoidingView>
+    <Text style={styles.errorTextStyle}>
+      {this.state.error}
+    </Text>
+    <Button onPress={this.onButtonPress.bind(this)} label="LOGIN"/>
+    <KeyboardAvoidingView style={{height:100}}/>
+  </Card>
     );
   }
 }
@@ -76,13 +73,9 @@ class SignupScreen extends React.Component {
     this.setState({ error: '', loading: true });
 
     if (this.checkPasswordMatch()){
-      firebase.auth().signInWithEmailAndPassword(email, password)
+      firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(this.onLoginSuccess.bind(this))
-        .catch(() => {
-          firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(this.onLoginSuccess.bind(this))
-            .catch(this.onLoginFail.bind(this));
-      });
+        .catch(this.onLoginFail.bind(this));
     } else {
       this.onPasswordMisMatch();
     }
@@ -111,7 +104,7 @@ class SignupScreen extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.loginContainerStyle} behavior="padding">
+      <Card>
         <Image source={logo} style={styles.logo} />
         <TextInput
           placeholder="email"
@@ -137,17 +130,12 @@ class SignupScreen extends React.Component {
           autoCapitalize="none"
           style={styles.loginBoxInputStyle}
         />
-
         <Text style={styles.errorTextStyle}>
           {this.state.error}
         </Text>
-        <TouchableOpacity
-          onPress={this.onButtonPress.bind(this)}
-        >
-        <Text style={styles.loginButtonStyle}>Sign up</Text>
-      </TouchableOpacity>
-      <View style={{height:80}}/>
-      </KeyboardAvoidingView>
+        <Button onPress={this.onButtonPress.bind(this)} label="SIGNUP"/>
+        <View style={{height:100}}/>
+      </Card>
     );
   }
 }
@@ -159,33 +147,12 @@ const styles = {
     alignSelf: 'center',
     color: 'red'
   },
-  loginContainerStyle: {
-    backgroundColor: '#5cad14',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  loginButtonStyle: {
-    backgroundColor: "#7fe1af",
-    padding: 10,
-    fontSize: 25,
-  },
-  loginButtonContainerStyle: {
-    flex:0.8,
-    flexDirection: 'column',
-    justifyContent:'center',
-    alignItems:'center',
-  },
   loginBoxInputStyle: {
     backgroundColor: '#fff',
     marginHorizontal: 10,
     marginVertical: 5,
     width: window.width - 30,
   },
-  loginLabelStyle: {
-    fontSize: 25,
-    textAlign: "left",
-  }
 };
 
 export default TabNavigator(

@@ -13,9 +13,6 @@ export default class AppScreen extends React.Component {
       <Card>
         <CardSection>
           <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
-          <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
-          <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
-          <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
         </CardSection>
       </Card>
     );
