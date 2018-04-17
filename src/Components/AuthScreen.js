@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TextInput, Text,Image,  View, TouchableOpacity, KeyboardAvoidingView, Dimensions  } from 'react-native';
-import firebase from 'firebase';
+import { auth, firestore} from "../config/firebase";
 import { LabelInput, Input, Spinner, Card, Button} from './common';
 import { TabNavigator, TabBarBottom} from 'react-navigation';
 import logo from '../Icons/compost.png';
@@ -11,7 +11,7 @@ class LoginScreen extends React.Component {
   onButtonPress() {
     const { email, password } = this.state;
     this.setState({ error: '', loading: true });
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    auth.signInAndRetrieveDataWithEmailAndPassword(email, password)
       .then(this.onLoginSuccess.bind(this))
       .catch(this.onLoginFail.bind(this));
   }
@@ -73,7 +73,7 @@ class SignupScreen extends React.Component {
     this.setState({ error: '', loading: true });
 
     if (this.checkPasswordMatch()){
-      firebase.auth().createUserWithEmailAndPassword(email, password)
+      auth.createUserWithEmailAndPassword(email, password)
         .then(this.onLoginSuccess.bind(this))
         .catch(this.onLoginFail.bind(this));
     } else {

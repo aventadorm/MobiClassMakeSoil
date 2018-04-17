@@ -1,13 +1,15 @@
-import firebase from 'firebase';
+import { auth, database, provider } from "./config/firebase";
 import React, { Component} from 'react';
 import { View, StyleSheet} from 'react-native';
 import { Card, CardSection, Header, Button, Spinner, Input } from './Components/common';
 import AppNavigation from './Navigation/AppNavigation';
 import { StackNavigator, SwitchNavigator } from 'react-navigation';
 
+
 export default class App extends React.Component {
 
   componentWillMount() {
+    /*
     if (!firebase.apps.length){
       firebase.initializeApp({
         apiKey: 'AIzaSyD17KqnJyxFcr3YVqSzeuz9B_wNi8yDcbI',
@@ -18,7 +20,7 @@ export default class App extends React.Component {
         messagingSenderId: '484606101228'
       });
     }
-
+    */
   }
 
   componentWillUnmount() {
