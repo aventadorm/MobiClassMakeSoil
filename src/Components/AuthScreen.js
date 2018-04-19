@@ -11,9 +11,14 @@ class LoginScreen extends React.Component {
   onButtonPress() {
     const { email, password } = this.state;
     this.setState({ error: '', loading: true });
-    auth.signInAndRetrieveDataWithEmailAndPassword(email, password)
-      .then(this.onLoginSuccess.bind(this))
-      .catch(this.onLoginFail.bind(this));
+
+    if (email && password){
+      auth.signInAndRetrieveDataWithEmailAndPassword(email, password)
+        .then(this.onLoginSuccess.bind(this))
+        .catch(this.onLoginFail.bind(this));
+    } else {
+      this.onLoginFail();
+    }
   }
 
 
@@ -34,32 +39,34 @@ class LoginScreen extends React.Component {
 
   render() {
     return (
-    <Card style={styles.loginContainerStyle} behavior="padding">
-      <Image source={logo} style={styles.logo} />
-      <TextInput
-        placeholder="email"
-        label='Email: '
-        value={this.state.email}
-        onChangeText={email => this.setState({ email })}
-        keyboardType='email-address'
-        autoCapitalize="none"
-        style={styles.loginBoxInputStyle}
-      />
-      <TextInput
-        secureTextEntry
-        placeholder="password"
-        value={this.state.password}
-        onChangeText={password => this.setState({ password })}
-        autoCapitalize="none"
-        style={styles.loginBoxInputStyle}
-      />
+      <View style={styles.backgroundStyle}>
+        <Card style={styles.loginContainerStyle} behavior="padding">
+          <Image source={logo} style={styles.logo} />
+          <TextInput
+            placeholder="email"
+            label='Email: '
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+            keyboardType='email-address'
+            autoCapitalize="none"
+            style={styles.loginBoxInputStyle}
+          />
+          <TextInput
+            secureTextEntry
+            placeholder="password"
+            value={this.state.password}
+            onChangeText={password => this.setState({ password })}
+            autoCapitalize="none"
+            style={styles.loginBoxInputStyle}
+          />
 
-    <Text style={styles.errorTextStyle}>
-      {this.state.error}
-    </Text>
-    <Button onPress={this.onButtonPress.bind(this)} label="LOGIN"/>
-    <KeyboardAvoidingView style={{height:100}}/>
-  </Card>
+          <Text style={styles.errorTextStyle}>
+            {this.state.error}
+          </Text>
+          <Button onPress={this.onButtonPress.bind(this)} label="LOGIN"/>
+          <KeyboardAvoidingView style={{height:100}}/>
+        </Card>
+      </View>
     );
   }
 }
@@ -72,7 +79,7 @@ class SignupScreen extends React.Component {
 
     this.setState({ error: '', loading: true });
 
-    if (this.checkPasswordMatch()){
+    if (email && password && this.checkPasswordMatch()){
       auth.createUserWithEmailAndPassword(email, password)
         .then(this.onLoginSuccess.bind(this))
         .catch(this.onLoginFail.bind(this));
@@ -104,44 +111,51 @@ class SignupScreen extends React.Component {
 
   render() {
     return (
-      <Card>
-        <Image source={logo} style={styles.logo} />
-        <TextInput
-          placeholder="email"
-          value={this.state.email}
-          onChangeText={email => this.setState({ email })}
-          keyboardType='email-address'
-          autoCapitalize="none"
-          style={styles.loginBoxInputStyle}
-        />
-        <TextInput
-          secureTextEntry
-          placeholder="password"
-          value={this.state.password}
-          onChangeText={password => this.setState({ password })}
-          autoCapitalize="none"
-          style={styles.loginBoxInputStyle}
-        />
-        <TextInput
-          secureTextEntry
-          placeholder="confirm password"
-          value={this.state.confirmPassword}
-          onChangeText={confirmPassword => this.setState({ confirmPassword })}
-          autoCapitalize="none"
-          style={styles.loginBoxInputStyle}
-        />
-        <Text style={styles.errorTextStyle}>
-          {this.state.error}
-        </Text>
-        <Button onPress={this.onButtonPress.bind(this)} label="SIGNUP"/>
-        <View style={{height:100}}/>
-      </Card>
+      <View style={styles.backgroundStyle}>
+        <Card>
+          <Image source={logo} style={styles.logo} />
+          <TextInput
+            placeholder="email"
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+            keyboardType='email-address'
+            autoCapitalize="none"
+            style={styles.loginBoxInputStyle}
+          />
+          <TextInput
+            secureTextEntry
+            placeholder="password"
+            value={this.state.password}
+            onChangeText={password => this.setState({ password })}
+            autoCapitalize="none"
+            style={styles.loginBoxInputStyle}
+          />
+          <TextInput
+            secureTextEntry
+            placeholder="confirm password"
+            value={this.state.confirmPassword}
+            onChangeText={confirmPassword => this.setState({ confirmPassword })}
+            autoCapitalize="none"
+            style={styles.loginBoxInputStyle}
+          />
+          <Text style={styles.errorTextStyle}>
+            {this.state.error}
+          </Text>
+          <Button onPress={this.onButtonPress.bind(this)} label="SIGNUP"/>
+          <View style={{height:100}}/>
+        </Card>
+      </View>
     );
   }
 }
 
 const window = Dimensions.get('window');
 const styles = {
+  backgroundStyle: {
+    backgroundColor: '#42f489',
+    opacity: 0.6,
+    flex:1,
+  },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
