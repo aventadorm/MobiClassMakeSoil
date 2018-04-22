@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth, firestore } from "../config/firebase";
+import firebase from 'firebase';
 import {
   ActivityIndicator,
   AsyncStorage,
@@ -17,7 +17,7 @@ export default class AuthLoadingScreen extends React.Component {
   _bootstrapAsync = async () => {
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
-    this.props.navigation.navigate((auth.currentUser ? 'App' : 'Auth'));
+    this.props.navigation.navigate((firebase.auth().currentUser ? 'App' : 'Auth'));
   };
 
 

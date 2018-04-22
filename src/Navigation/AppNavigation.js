@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { View, StyleSheet, Text, SafeAreaView, ScrollView, TouchableHighlight, Image} from 'react-native';
-import { auth, firestore} from "../config/firebase";
+import firebase from 'firebase';
 import AuthLoadingScreen from '../Components/AuthLoadingScreen';
 import AuthScreen from '../Components/AuthScreen';
 import AppScreen from '../Components/AppScreen';
@@ -20,7 +20,7 @@ const DrawerStack = DrawerNavigator(
           <ScrollView>
             <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
                 <DrawerItems {...props} />
-                <Text style={{textAlign:'center'}} onPress={ async () => {auth.signOut()}}>
+                <Text style={{textAlign:'center'}} onPress={ async () => {firebase.auth().signOut()}}>
                   LOGOUT
                 </Text>
             </SafeAreaView>
