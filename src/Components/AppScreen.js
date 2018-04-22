@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import firebase from 'firebase';
 import { Button, Card, CardSection, Input, Spinner } from './common';
-
+import SoilSiteRequestJoin from './SoilSiteRequestJoin'
 export default class AppScreen extends React.Component {
   static navigationOptions = {
     title: 'HOME',
@@ -27,11 +27,12 @@ export default class AppScreen extends React.Component {
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
-        </CardSection>
-      </Card>
+      // <Card>
+      //   <CardSection>
+      //     <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
+      //   </CardSection>
+      // </Card>
+      <SoilSiteRequestJoin/>
     );
   }
 
