@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TextInput, Text,Image,  View, TouchableOpacity, KeyboardAvoidingView, Dimensions  } from 'react-native';
-import { auth } from "../config/firebase";
+import { auth, firestore} from "../config/firebase";
 import { LabelInput, Input, Spinner, Card, Button} from './common';
 import { TabNavigator, TabBarBottom} from 'react-navigation';
 import logo from '../Icons/compost.png';
