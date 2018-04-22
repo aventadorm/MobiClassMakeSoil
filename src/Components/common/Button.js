@@ -15,7 +15,7 @@ const Button = ({ onPress, label }) => {
 
 const styles = {
   textStyle: {
-    color: '#2a662e',
+    color: '#007aff',
     fontSize: 24,
     fontWeight: '600',
     paddingLeft:10,
@@ -26,9 +26,10 @@ const styles = {
   buttonStyle: {
     //flex: 1,
     //alignSelf: 'stretch',
-    backgroundColor: "#42f44e",
+    backgroundColor: "#7fe1af",
     padding: 20,
     borderRadius: 20,
+    borderWidth: 1,
     borderColor: '#007aff',
     justifyContent:'center',
     alignItems:'center',
