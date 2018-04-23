@@ -70,36 +70,52 @@ export default class SoilSiteRequestJoin extends Component {
                 <Text style = {styles.title}>
                 {this.state.name}
                 </Text>
-                <Text style = {styles.label}>
-                Status
-                </Text>
-                <Text style = {styles.text}>
-                    {this.state.openToStatus}
-                </Text>
-                <Text style = {styles.label}>
-                Accepted Material
-                </Text>
-                <Text style = {styles.text}>
-                    {this.state.allowedMaterial}
-                </Text>
-                <Text style = {styles.label}>
-                Material Not Allowed
-                </Text>
-                <Text style = {styles.text}>
-                    {this.state.disallowedMaterial}
-                </Text>
-                <Text style = {styles.label}>
-                Soil Makers
-                </Text>
-                <Text style = {styles.text}>
-                    {this.state.makers}
-                </Text>
-                <Text style = {styles.label}>
-                Soil Supporters
-                </Text>
-                <Text style = {styles.text}>
-                    {this.state.supporters}
-                </Text>
+
+                <View>
+                    <Text style = {styles.label}>
+                        Status
+                    </Text>
+                    <Text style = {styles.text}>
+                        {this.state.openToStatus}
+                    </Text>
+                </View>
+
+                <View>
+                    <Text style = {styles.label}>
+                        Accepted Material
+                    </Text>
+                    <Text style = {styles.text}>
+                        {this.state.allowedMaterial}
+                    </Text>
+                </View>
+
+                <View>
+                    <Text style = {styles.label}>
+                        Material Not Allowed
+                    </Text>
+                    <Text style = {styles.text}>
+                        {this.state.disallowedMaterial}
+                    </Text>
+                </View>
+
+                <View>
+                    <Text style = {styles.label}>
+                        Soil Makers
+                    </Text>
+                    <Text style = {styles.text}>
+                        {this.state.makers}
+                    </Text>
+                </View>
+
+                <View>
+                    <Text style = {styles.label}>
+                        Soil Supporters :
+                    </Text>
+                    <Text style = {styles.text}>
+                        {this.state.supporters}
+                    </Text>
+                </View>
+
                 <Button  
                 title = "Go to Message Board" 
                 style = {styles.button}/>
@@ -130,12 +146,10 @@ const styles = StyleSheet.create({
     text: {
         flexDirection: 'row',
         height: 20,
-        padding: 25,
-        backgroundColor: 'lightgreen',
-        fontSize: 18
+        fontSize: 18,
+        alignSelf: 'center'
       },
     title: {
-        color: 'maroon',
         fontSize: 22,
         alignSelf: 'center',
         fontWeight: 'bold'

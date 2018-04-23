@@ -1,23 +1,22 @@
 import React from 'react';
-import { KeyboardAvoidingView } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 const CardSection = (props) =>
   (
-    <KeyboardAvoidingView  style={styles.containerStyle}>
+    <View  style={styles.containerStyle}>
       {props.children}
-    </KeyboardAvoidingView >
+    </View >
   );
+  const styles = StyleSheet.create({
+      containerStyle: {
+        borderBottomWidth: 1,
+        padding: 5,
+        backgroundColor: '#fff',
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
+        borderColor: '#ddd',
+        position: 'relative'
+      }});
 
-const styles = {
-  containerStyle: {
-    borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-    borderColor: '#ddd',
-    position: 'relative'
-  }
-};
 
 export { CardSection };

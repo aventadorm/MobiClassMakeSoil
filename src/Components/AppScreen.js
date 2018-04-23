@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import firebase from 'firebase';
 import { Button, Card, CardSection, Input, Spinner } from './common';
 import SoilSiteRequestJoin from './SoilSiteRequestJoin'
+import SoilsiteList from './SoilsiteList'
 export default class AppScreen extends React.Component {
   static navigationOptions = {
     title: 'HOME',
@@ -33,6 +34,7 @@ export default class AppScreen extends React.Component {
       //   </CardSection>
       // </Card>
       <SoilSiteRequestJoin/>
+      // <SoilsiteList/>
     );
   }
 

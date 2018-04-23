@@ -6,7 +6,9 @@ import AuthScreen from '../Components/AuthScreen';
 import AppScreen from '../Components/AppScreen';
 import AppNavigation from '../Navigation/AppNavigation';
 import { StackNavigator, SwitchNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
-
+import SoilsiteList from '../Components/SoilsiteList'
+import SoilSiteRequestJoin from '../Components/SoilSiteRequestJoin';
+import SiteItem from '../Components/SiteItem';
 const DrawerStack = DrawerNavigator(
   {
     Home: {
@@ -57,8 +59,10 @@ const AppStack = StackNavigator(
     })
   }
 );
+
 const AuthStack = StackNavigator(
-  { Login: AuthScreen },
+  // { Login: AuthScreen },
+  { Login: SoilSiteRequestJoin },
   {
     navigationOptions: ({navigation}) => ({
       title: 'MAKE:SOIL',
